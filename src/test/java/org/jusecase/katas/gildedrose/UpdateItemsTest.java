@@ -3,7 +3,6 @@ package org.jusecase.katas.gildedrose;
 import org.junit.Before;
 import org.junit.Test;
 import org.jusecase.UsecaseTest;
-import org.jusecase.builders.Builder;
 import org.jusecase.katas.gildedrose.UpdateItems.Request;
 import org.jusecase.katas.gildedrose.UpdateItems.Response;
 import org.jusecase.katas.gildedrose.entities.Item;
@@ -11,7 +10,6 @@ import org.jusecase.katas.gildedrose.entities.ItemEntity;
 import org.jusecase.katas.gildedrose.entities.ItemGatewayMock;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.jusecase.Builders.a;
 import static org.jusecase.Builders.an;
 import static org.jusecase.katas.gildedrose.entities.ItemEntityBuilder.item;
 
@@ -22,7 +20,6 @@ public class UpdateItemsTest extends UsecaseTest<Request, Response> {
     @Before
     public void setUp() {
         usecase = new UpdateItems(itemGateway);
-        givenRequest(a(request()));
     }
 
     @Test
@@ -203,18 +200,5 @@ public class UpdateItemsTest extends UsecaseTest<Request, Response> {
 
     private Item getItem(int index) {
         return itemGateway.getItems().get(index);
-    }
-
-    private RequestBuilder request() {
-        return new RequestBuilder();
-    }
-
-    private static class RequestBuilder implements Builder<Request> {
-        private Request request = new Request();
-
-        @Override
-        public Request build() {
-            return request;
-        }
     }
 }
